@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package com.humuson.core.sender.model;
+
+option java_package = "com.humuson.core.sender.model";
+option java_outer_classname = "ReqSendMessage";
+
+message ReqMessage {
+    string  customCode = 1;         //고객사 코드 [IMC 연동 필드]
+    string  key = 2;                //unique key (group + member Key) == ResMessage.key
+    Channel channel = 3;
+    Content msgContent = 4;         //send full content
+    string  from = 5;               //송신자      [from_email, phone number]
+    string  to = 6;                 //수신자      [email, phone number]
+    string  reqTime = 7 ;           //발송요청시간 [ yyyymmddhh24miss ]
+    int32   priority = 8;           //우선순위 - [1~5] 단계
+    string  sendType = 9;           //MASS, AUTO, etc..
+    int32   retryCount = 10 [default = 1];
+    int32   retried = 11 ;
+}
+
+message ReqEmMessage {
+    ReqMessage reqMessage = 127;    //부모 정보
+    string  domain = 10 ;           //email domain 정보
+}
+
+enum Channel {
+  EM = 0;
+  SM = 1;
+  KA = 2;
+  PU = 3;
+}
+
+message Content {
+    string key = 1;       //content key ( 요청(client)에서 지정함.
+    string content = 2;   //text content 원문
+    int32 type = 3;       //content type  (확장 기능)
+}
+

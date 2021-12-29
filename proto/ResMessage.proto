@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.humuson.core.sender.model;
+
+option java_package = "com.humuson.core.sender.model";
+option java_outer_classname = "ResSendMessage";
+
+message ResMessage {
+    string key         =1       ;  // 발송 요청한 Key 정보 Message.key
+    string reqSendTime =2       ;  // 발송 요청한 시간
+    string sentTime    =3       ;  // 발송 시간
+    string resultTime  =4       ;  // 발송 결과 수신 시간
+    string code        =5       ;  // 발송 결과 정보
+    string message     =6       ;  // 발송 결과 메시지
+    string transCode   =7       ;  // 연동 에러 코드
+    bool   retry       =8       ;  // retry 여부
+}
+
+
+

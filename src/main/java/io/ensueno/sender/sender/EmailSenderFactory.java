@@ -37,7 +37,7 @@ public enum EmailSenderFactory {
                 try {
                     byte[] byteMessage = payloadToByteArray();
 
-                    producer.send("test", byteMessage);
+                    producer.send("auto.em.req", byteMessage);
                     //debug test data
                     ReqSendMessage.ReqEmMessage reqEmMessage = ReqSendMessage.ReqEmMessage.parseFrom(byteMessage);
                     log.info("message={}", reqEmMessage.getReqMessage());
